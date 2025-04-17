@@ -1,5 +1,6 @@
 package com.luv2code.linkedin.posts_service.controller;
 
+import com.luv2code.linkedin.posts_service.auth.UserContextHolder;
 import com.luv2code.linkedin.posts_service.dto.PostCreateRequestDto;
 import com.luv2code.linkedin.posts_service.dto.PostDto;
 import com.luv2code.linkedin.posts_service.entity.Post;
@@ -27,6 +28,7 @@ public class PostsController {
 
     @GetMapping("/{postId}")
     public ResponseEntity<PostDto> getPost(@PathVariable Long postId){
+        Long userId = UserContextHolder.getCurrentUserId();
         PostDto post = postsService.getPostById(postId);
         return ResponseEntity.ok(post);
     }
