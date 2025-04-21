@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface PostsService {
 
-    PostDto createPost(PostCreateRequestDto postCreateRequestDto, Long userId);
+    PostDto createPost(PostCreateRequestDto postCreateRequestDto);
 
     PostDto getPostById(Long postId);
 

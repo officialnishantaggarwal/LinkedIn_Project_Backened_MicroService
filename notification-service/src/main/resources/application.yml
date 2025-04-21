@@ -1,0 +1,29 @@
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: ${spring.application.name}
+      key-deserializer: org.apache.kafka.common.serialization.LongDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json:
+          trusted.packages: com.luv2code.linkedin.*
+
+
+
+
+#spring:
+#  kafka:
+#    bootstrap-servers: localhost:9092
+#    consumer:
+#      key-deserializer: org.apache.kafka.common.serialization.LongDeserializer
+#      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+#      properties:
+#        spring.json:
+#          trusted.packages: com.luv2code.learnKafka.*
+#        schema:
+#          registry:
+#            url: "http://127.0.0.1:8082"
+#        specific:
+#          avro:
+#            reader: true

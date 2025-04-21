@@ -2,7 +2,7 @@ package com.luv2code.linkedin.posts_service.service;
 
 public interface PostLikeService {
 
-    void likePost(Long postId, Long userId);
+    void likePost(Long postId);
 
-    void unlikePost(Long postId, long userId);
+    void unlikePost(Long postId);
 }
