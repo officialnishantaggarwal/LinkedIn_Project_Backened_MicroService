@@ -1,5 +1,8 @@
 package com.luv2code.linkedin.posts_service.service.impl;
 
+import com.luv2code.linkedin.posts_service.auth.UserContextHolder;
+import com.luv2code.linkedin.posts_service.clients.ConnectionsClient;
+import com.luv2code.linkedin.posts_service.dto.PersonDto;
 import com.luv2code.linkedin.posts_service.dto.PostCreateRequestDto;
 import com.luv2code.linkedin.posts_service.dto.PostDto;
 import com.luv2code.linkedin.posts_service.entity.Post;
@@ -22,6 +25,7 @@ public class PostsServiceImpl implements PostsService {
 
     private final PostsRepository postsRepository;
     private final ModelMapper modelMapper;
+    private final ConnectionsClient connectionsClient;
 
     @Override
     public PostDto createPost(PostCreateRequestDto postCreateRequestDto, Long userId) {
@@ -36,6 +40,13 @@ public class PostsServiceImpl implements PostsService {
     @Override
     public PostDto getPostById(Long postId) {
         log.debug("Retrieving post with ID: {}",postId);
+
+        Long userId = UserContextHolder.getCurrentUserId();
+
+        List<PersonDto> firstConnections = connectionsClient.getFirstConnections();
+
+        // TODO send notifications to all connections first degree
+
         Post post = postsRepository.findById(postId)
                 .orElseThrow(()-> new ResourceNotFoundException("Post not found with id: "+postId));
         return modelMapper.map(post,PostDto.class);

@@ -1,6 +1,5 @@
 package com.luv2code.linkedin.connections_service.auth;
 
-import com.luv2code.linkedin.posts_service.auth.UserContextHolder;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;

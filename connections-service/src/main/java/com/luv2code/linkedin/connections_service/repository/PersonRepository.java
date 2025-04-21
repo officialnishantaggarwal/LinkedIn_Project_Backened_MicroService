@@ -15,6 +15,6 @@ public interface PersonRepository extends Neo4jRepository<Person,Long> {
 
     @Query("MATCH (personA:Person) -[:CONNECTED_TO]- (personB:Person) " +
             "WHERE personA.userId = $userId " +
-            "RETURN personB")
+            "RETURN DISTINCT personB")
     List<Person> getFirstDegreeConnections(Long userId);
 }
